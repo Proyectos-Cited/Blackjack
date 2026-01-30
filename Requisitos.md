@@ -25,8 +25,178 @@ El ganador o los ganadores de cada ronda sumarán un punto. El primero en conseg
 - Jugador o croupier se pasan (más de 21), si el crupier se pasa, ganan los jugadores automáticamente la ronda.
 - Empate (push) - Ganador por puntuación
 
-si queréis voy creando el repositorio, o lo teneis ya creado?
+Reglas y mecánicas del juego
 
-Vamos a ir planteando el proyecto, implementaciones que se pueden reallizar, por ejemplo:
+Vamos a ir planteando el proyecto, implementaciones que se pueden realizar, por ejemplo:
 
--Chupito: Si el jugador bebe 3 chupitos su fortuna aumenta, es decir que tiene mas probabilidades de ganar, estos chupitos valen dinero, es decir, estos se pagan con el dinero apostado. Su tiempo de uso es de una partida a partir de esa partida pierde sus efectos, si durante dos partidas bebe chupitos en las dos este se desmayara y perderá parte de su dinero como si le hubieran robado
+- Chupito: Si el jugador bebe 3 chupitos su fortuna aumenta, es decir que tiene más probabilidades de ganar, estos chupitos valen dinero, es decir, estos se pagan con el dinero apostado. Su tiempo de uso es de una partida a partir de esa partida pierde sus efectos, si durante dos partidas bebe chupitos en las dos este se desmayara y perderá parte de su dinero como si le hubieran robado
+- Interfaz gráfica en dos dimensiones del tablero del juego y sus cartas
+- Seguro ludópata a todo riesgo: Al ganar dos manos seguidas, recibe este objeto el cual le sirve como seguro por si en la siguiente ronda o en la que el decida usar, se pasa de 21, pues puede retroceder y pedir de nuevo.
+
+Sistema de penalización por inacción:
+
+División del Proyecto Blackjack POO (Java) entre 5 personas
+El programa debe implementar como mínimo las clases: Carta, Mazo, Mano, Jugador, Crupier y JuegoBlackjack, además de los métodos principales del flujo del juego: ganador(), es_Válido(), movimiento(), mostrar tablero() e inicio_juego().
+El objetivo es que el juego se desarrolle por rondas, otorgándo un punto al ganador de cada una. El primer jugador o el crupier que alcance 5 puntos será el vencedor final.
+
+Mario Alvarez: Desarrollo de Carta y Mazo
+Responsable de implementar la base del sistema de cartas y el funcionamiento del mazo.
+Tareas asignadas:
+Implementar la clase Carta:
+
+Atributos privados: palo, valor, nombre o representación.
+
+Constructor completo.
+
+Métodos getters y setters.
+
+Método toString() para mostrar la carta en pantalla.
+
+Implementar la clase Mazo:
+
+Estructura interna para almacenar cartas (por ejemplo ArrayList).
+
+Generación automática de las 52 cartas.
+
+Método barajar().
+
+Método robarCarta().
+
+Reinicio del mazo si se agotan las cartas.
+
+Archivos principales:
+Carta.java
+
+Mazo.java
+
+Fran: Implementación de Mano y cálculo de puntuaciones
+Encargado de gestionar la mano de cada jugador y calcular correctamente el valor en Blackjack.
+Tareas asignadas:
+Implementar la clase Mano:
+
+Lista de cartas en mano.
+
+Método agregarCarta(Carta c).
+
+Método calcularPuntos(), contemplando:
+
+As con valor 1 u 11 según convenga.
+
+Figuras con valor 10.
+
+Método tieneBlackjack().
+
+Método estaPasado() (más de 21).
+
+Método para mostrar cartas, con opción de ocultar la primera carta del crupier.
+
+Archivo principal:
+Mano.java
+
+Alejandro: Desarrollo de Jugador y Crupier
+Responsable del comportamiento de los jugadores y de la lógica automática del crupier.
+Tareas asignadas:
+Implementar la clase Jugador:
+
+Atributos: nombre, mano, puntos acumulados, estado de plantado.
+
+Método movimiento(): permite decidir entre pedir carta o plantarse.
+
+Método es_Válido(): verifica si el jugador puede seguir jugando.
+
+Reinicio de la mano al iniciar cada ronda.
+
+Implementar la clase Crupier (heredando de Jugador):
+
+Movimiento automático siguiendo las reglas oficiales:
+
+Pedir cartas hasta llegar al menos a 17 puntos.
+
+Mostrar solo una carta al inicio de la ronda.
+
+Archivos principales:
+Jugador.java
+
+Crupier.java
+
+Mario Rodriguez: Motor principal del juego (JuegoBlackjack)
+Encargado de controlar el flujo completo de la partida, las rondas y el sistema de puntuación hasta llegar a 5 puntos.
+Tareas asignadas:
+Implementar la clase JuegoBlackjack:
+
+Lista de jugadores.
+
+Instancia del crupier.
+
+Instancia del mazo.
+
+Implementar los métodos clave del programa:
+
+inicio_juego():
+
+Crear el mazo.
+
+Repartir cartas iniciales.
+
+Controlar turnos de jugadores.
+
+Ejecutar turno del crupier.
+
+Calcular ganador.
+
+Sumar puntos.
+
+Repetir rondas hasta que alguien llegue a 5 puntos.
+
+mostrar_tablero():
+
+Mostrar cartas visibles de cada jugador.
+
+Mostrar una carta del crupier al inicio.
+
+Mostrar puntuaciones conocidas.
+
+ganador():
+
+Evaluar resultados según:
+
+Blackjack natural.
+
+Jugador o crupier se pasan.
+
+Empate (push).
+
+Mayor puntuación válida.
+
+Archivo principal:
+JuegoBlackjack.java
+
+Luis : Mecánicas adicionales y ampliaciones del proyecto
+Responsable de implementar mejoras opcionales propuestas para enriquecer el juego.
+Tareas asignadas:
+Implementación del sistema “Chupito”:
+
+Si un jugador bebe 3 chupitos, aumenta su fortuna temporalmente.
+
+El efecto dura una sola partida.
+
+Si bebe en dos partidas consecutivas, se desmaya y pierde parte del dinero.
+
+Implementación del “Seguro ludópata a todo riesgo”:
+
+Se obtiene al ganar dos rondas seguidas.
+
+Permite evitar la pérdida si el jugador se pasa de 21 en una ronda futura.
+
+Desarrollo opcional de interfaz gráfica 2D:
+
+Representación visual del tablero y cartas con Swing o JavaFX.
+
+Archivos posibles:
+Chupito.java
+
+Seguro.java
+
+InterfazGrafica.java (opcional)
+
+todo en eclipse
