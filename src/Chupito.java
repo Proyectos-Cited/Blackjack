@@ -13,8 +13,8 @@
  */
 public class Chupito {
     // Atributos privados
-    private int contadorChupitos; // Contador de chupitos bebidos en la partida actual
-    private int partidasConEfectoSeguidas; // Contador de partidas consecutivas con efecto
+    private int contadorChupitos; // Contador de chupitos bebidos en la ronda actual
+    private int rondasConEfectoSeguidas; // Contador de rondas consecutivas con efecto
     private boolean efectoFortuna; // Estado del efecto fortuna
 
     /**
@@ -22,7 +22,7 @@ public class Chupito {
      */
     public Chupito() {
         this.contadorChupitos = 0;
-        this.partidasConEfectoSeguidas = 0;
+        this.rondasConEfectoSeguidas = 0;
         this.efectoFortuna = false;
     }
 
@@ -59,47 +59,47 @@ public class Chupito {
      */
     private void activarFortuna() {
         efectoFortuna = true;
-        partidasConEfectoSeguidas++;
+        rondasConEfectoSeguidas++;
         System.out.println("┌────────────────────────────────────┐");
         System.out.println("│       ¡FORTUNA ACTIVADA!           │");
-        System.out.println("│ Tu suerte mejora esta partida      │");
+        System.out.println("│ Tu suerte mejora esta ronda        │");
         System.out.println("└────────────────────────────────────┘");
     }
 
     /**
-     * Comprueba si el jugador se desmaya al final de la partida
+     * Comprueba si el jugador se desmaya al final de la ronda
      * Debe llamarse desde JuegoBlackjack.java al finalizar cada ronda
      * 
      * @param dineroActual el dinero actual del jugador
      * @return el nuevo dinero del jugador (puede ser menor si se desmayó)
      */
     public double comprobarDesmayo(double dineroActual) {
-        // Si bebió en dos partidas consecutivas, se desmaya
-        if (efectoFortuna && partidasConEfectoSeguidas >= 2) {
+        // Si bebió en dos rondas consecutivas, se desmaya
+        if (efectoFortuna && rondasConEfectoSeguidas >= 2) {
             System.out.println("┌────────────────────────────────────┐");
             System.out.println("│       ¡TE HAS DESMAYADO!           │");
             System.out.println("│ Te han robado mientras dormías...  │");
             System.out.println("│ Pierdes el 30% de tu dinero        │");
             System.out.println("└────────────────────────────────────┘");
 
-            partidasConEfectoSeguidas = 0;
+            rondasConEfectoSeguidas = 0;
             return dineroActual * 0.7; // Pierde el 30%
         }
 
-        // Si terminó la partida sin activar fortuna, se rompe la racha
+        // Si terminó la ronda sin activar fortuna, se rompe la racha
         if (!efectoFortuna) {
-            partidasConEfectoSeguidas = 0;
+            rondasConEfectoSeguidas = 0;
         }
 
         return dineroActual; // No hay cambios en el dinero
     }
 
     /**
-     * Resetea el estado al finalizar la partida
+     * Resetea el estado al finalizar la ronda
      * IMPORTANTE: Debe llamarse desde JuegoBlackjack.java al final de cada ronda
      */
-    public void finalizarPartida() {
-        // El efecto solo dura una partida
+    public void finalizarRonda() {
+        // El efecto solo dura una ronda
         this.efectoFortuna = false;
         this.contadorChupitos = 0;
     }
@@ -124,12 +124,12 @@ public class Chupito {
     }
 
     /**
-     * Obtiene el número de partidas consecutivas con efecto
+     * Obtiene el número de rondas consecutivas con efecto
      * 
-     * @return número de partidas consecutivas
+     * @return número de rondas consecutivas
      */
-    public int getPartidasConEfectoSeguidas() {
-        return partidasConEfectoSeguidas;
+    public int getRondasConEfectoSeguidas() {
+        return rondasConEfectoSeguidas;
     }
 
     /**
@@ -140,6 +140,6 @@ public class Chupito {
         return String.format("Chupito[chupitos=%d/3, fortuna=%s, racha=%d]",
                 contadorChupitos,
                 efectoFortuna ? "ACTIVA" : "inactiva",
-                partidasConEfectoSeguidas);
+                rondasConEfectoSeguidas);
     }
 }
